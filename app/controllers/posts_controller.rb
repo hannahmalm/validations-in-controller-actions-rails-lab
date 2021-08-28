@@ -7,10 +7,13 @@ class PostsController < ApplicationController
   def edit
   end
 
+  #if the update passes validation, then redirect, else back to the edit form
   def update
-    @post.update(post_params)
-
-    redirect_to post_path(@post)
+   if @post.update(post_params)
+      redirect_to post_path(@post)
+   else 
+    render :edit
+   end 
   end
 
   private
